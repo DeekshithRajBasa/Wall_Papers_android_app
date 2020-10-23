@@ -39,30 +39,19 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-
+        //used to hide nav bar
         hidnav();
 
         int SPLASH_TIME_OUT = 1000;
         new Handler().postDelayed(new Runnable() {
-
-            /*
-             * Showing splash screen with a timer. This will be useful when you
-             * want to show case your app logo / company
-             */
-
             @Override
             public void run() {
-
                 Intent i = new Intent(SplashScreen.this, MainActivity.class);
                 startActivity(i);
                 finish();
-
             }
         }, SPLASH_TIME_OUT);
-
     }
-
-
     public void hidnav() {
         this.currentApiVersion = Build.VERSION.SDK_INT;
         if (this.currentApiVersion >= 19) {
@@ -84,9 +73,5 @@ public class SplashScreen extends AppCompatActivity {
             getWindow().getDecorView().setSystemUiVisibility(5894);
         }
     }
-
-
-
-
 }
 
