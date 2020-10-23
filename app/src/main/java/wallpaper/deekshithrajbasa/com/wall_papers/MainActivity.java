@@ -171,12 +171,9 @@ public class MainActivity extends AppCompatActivity
         };
         recyclerView.setAdapter(recyclerAdapter);
       requestPermission();
-
-
     }
 
     public static class BlogViewHolder extends RecyclerView.ViewHolder {
-
         View mView;
         int position;
         private ImageView imageView;
@@ -213,7 +210,6 @@ public class MainActivity extends AppCompatActivity
         public class getThumbnail extends AsyncTask<String,Void,Void>{
 
             Bitmap bitmap;
-
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
@@ -237,24 +233,20 @@ public class MainActivity extends AppCompatActivity
 
                     bitmap= ThumbnailUtils.extractThumbnail(fetchedBitmap,(int)(250*ratio),250);
 
-                }catch (Exception e){
-                    e.printStackTrace();
+                }catch (Exception exception){
+                    exception.printStackTrace();
                 }
 
                 return null;
             }
 
             @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-
-               imageView.setImageBitmap(bitmap);
-
-            }
-
-        }
-
-    }
+            protected void onPostExecute(Void voidValue) {
+                super.onPostExecute(voidValue);
+                imageView.setImageBitmap(bitmap);
+                }
+         }
+       }
 
     @Override
     public void onBackPressed() {
@@ -288,27 +280,29 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+//         if (id == R.id.nav_camera) {
+//             //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container ,new BuildingFragment()).commit();
+//             // Handle the camera action
+//         } else if (id == R.id.nav_gallery) {
+//         startActivity(new Intent(getApplicationContext(),building.class));
+//         } else if (id == R.id.nav_slideshow) {
+//             startActivity(new Intent(getApplicationContext(),Nature.class));
+//         } else if (id == R.id.nav_manage) {
+//             startActivity(new Intent(getApplicationContext(),flower.class));
+//         } else if (id == R.id.nav_share) {
+//             startActivity(new Intent(getApplicationContext(),quotes.class));
+//         } else if (id == R.id.nav_send) {
+//             startActivity(new Intent(getApplicationContext(),material.class));
+//         }
 
-            //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container ,new BuildingFragment()).commit();
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-                startActivity(new Intent(getApplicationContext(),building.class));
-
-        } else if (id == R.id.nav_slideshow) {
-            startActivity(new Intent(getApplicationContext(),Nature.class));
-
-        } else if (id == R.id.nav_manage) {
-            startActivity(new Intent(getApplicationContext(),flower.class));
-
-        } else if (id == R.id.nav_share) {
-            startActivity(new Intent(getApplicationContext(),quotes.class));
-
-        } else if (id == R.id.nav_send) {
-            startActivity(new Intent(getApplicationContext(),material.class));
+        switch(id){
+        case R.id.nav_gallery : startActivity(new Intent(getApplicationContext(),building.class));break;
+        case R.id.nav_slideshow : startActivity(new Intent(getApplicationContext(),Nature.class)); break;
+        case R.id.nav_manage : startActivity(new Intent(getApplicationContext(),flower.class));break;
+        case R.id.nav_share :  startActivity(new Intent(getApplicationContext(),quotes.class));break;
+        case R.id.nav_send : startActivity(new Intent(getApplicationContext(),material.class)); break;
+        
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
