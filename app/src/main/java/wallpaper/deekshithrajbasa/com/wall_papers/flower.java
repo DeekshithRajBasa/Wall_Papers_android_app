@@ -74,8 +74,7 @@ public class flower extends AppCompatActivity {
         {
             @Override
             protected void populateViewHolder(flower.BlogViewHolder viewHolder, instagramAdapter model, int position) {
-
-                //Lv-Edited
+               //Lv-Edited
                 viewHolder.imageView.setImageDrawable(getResources().getDrawable(R.drawable.loadingpic));
 
                 viewHolder.setImage(model.getImage());
@@ -85,14 +84,10 @@ public class flower extends AppCompatActivity {
 
                 if(!pos.contains(position))
                     pos.add(position);
-
-            }
+                 }
         };
         recyclerView.setAdapter(recyclerAdapter);
-
-
-
-    }
+ }
 
     public static class BlogViewHolder extends RecyclerView.ViewHolder {
         View mView;
@@ -107,30 +102,14 @@ public class flower extends AppCompatActivity {
 
                 @Override
                 public void onClick(View view) {
-
-
-                    Intent passdata = new Intent(view.getContext(), customview.class);
-
-                    passdata.putExtra("image", imageUrl.get(position));
-
-                    view.getContext().startActivity(passdata);
-
-
-
-
-                }
+                     Intent passdata = new Intent(view.getContext(), customview.class);
+                     passdata.putExtra("image", imageUrl.get(position));
+                     view.getContext().startActivity(passdata);
+            }
             });
-
-
-
             mView = itemView;
-
             imageView = (ImageView) itemView.findViewById(R.id.image);
-
-        }
-
-
-
+    }
         public void setPosition(int pos) {
             this.position = pos;
         }
@@ -141,7 +120,6 @@ public class flower extends AppCompatActivity {
 
         //Lv-edit
         public class getThumbnail extends AsyncTask<String,Void,Void> {
-
             Bitmap bitmap;
 
             @Override
@@ -167,17 +145,15 @@ public class flower extends AppCompatActivity {
 
                     bitmap= ThumbnailUtils.extractThumbnail(fetchedBitmap,(int)(250*ratio),250);
 
-                }catch (Exception e){
-                    e.printStackTrace();
+                }catch (Exception exception){
+                    exception.printStackTrace();
                 }
-
-                return null;
+                 return null;
             }
 
             @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-
+            protected void onPostExecute(Void voidValue) {
+                super.onPostExecute(voidValue);
                 imageView.setImageBitmap(bitmap);
 
             }
