@@ -54,12 +54,7 @@ public class Nature extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nature);
-
-
-            Thread.setDefaultUncaughtExceptionHandler(new material.MyUncaughtExceptionHandler());
-
-
-
+        Thread.setDefaultUncaughtExceptionHandler(new material.MyUncaughtExceptionHandler());
 
         recyclerView = (RecyclerView) findViewById(R.id.Recycleview);
         recyclerView.setHasFixedSize(true);
@@ -95,9 +90,6 @@ public class Nature extends AppCompatActivity {
             }
         };
         recyclerView.setAdapter(recyclerAdapter);
-
-
-
     }
 
     public static class BlogViewHolder extends RecyclerView.ViewHolder {
@@ -114,30 +106,18 @@ public class Nature extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
-
                     Intent passdata = new Intent(view.getContext(), customview.class);
 
                     passdata.putExtra("image", imageUrl.get(position));
 
                     view.getContext().startActivity(passdata);
-
-
-
-
                 }
             });
-
-
-
-            mView = itemView;
+             mView = itemView;
 
             imageView = (ImageView) itemView.findViewById(R.id.image);
-
-        }
-
-
-
-        public void setPosition(int pos) {
+         }
+         public void setPosition(int pos) {
             this.position = pos;
         }
 
@@ -147,8 +127,7 @@ public class Nature extends AppCompatActivity {
 
         //Lv-edit
         public class getThumbnail extends AsyncTask<String,Void,Void> {
-
-            Bitmap bitmap;
+         Bitmap bitmap;
 
             @Override
             protected void onPreExecute() {
@@ -173,16 +152,16 @@ public class Nature extends AppCompatActivity {
 
                     bitmap= ThumbnailUtils.extractThumbnail(fetchedBitmap,(int)(250*ratio),250);
 
-                }catch (Exception e){
-                    e.printStackTrace();
+                }catch (Exception exception){
+                    exception.printStackTrace();
                 }
 
                 return null;
             }
 
             @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
+            protected void onPostExecute(Void voidValue) {
+                super.onPostExecute(voidValue);
 
                 imageView.setImageBitmap(bitmap);
 
