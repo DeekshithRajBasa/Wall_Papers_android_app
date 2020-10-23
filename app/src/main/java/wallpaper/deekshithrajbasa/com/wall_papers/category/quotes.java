@@ -1,4 +1,4 @@
-package wallpaper.deekshithrajbasa.com.wall_papers;
+package wallpaper.deekshithrajbasa.com.wall_papers.category;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -21,7 +21,6 @@ import android.widget.TextView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -29,8 +28,12 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
+import wallpaper.deekshithrajbasa.com.wall_papers.R;
+import wallpaper.deekshithrajbasa.com.wall_papers.utils.SimpleDividerItemDecoration;
+import wallpaper.deekshithrajbasa.com.wall_papers.utils.customview;
+import wallpaper.deekshithrajbasa.com.wall_papers.adapter.instagramAdapter;
 
-public class building extends AppCompatActivity {
+public class quotes extends AppCompatActivity {
     public static final String EXTRA_URL = "imageurl";
     DatabaseReference dref;
     ListView listview;
@@ -46,15 +49,14 @@ public class building extends AppCompatActivity {
     private EditText mSearchField;
     private ImageButton mSearchBtn;
     //arrays to store image, title, description, int position(0,1,2,3..)
-  public static ArrayList<String> imageUrl = new ArrayList<>();
+    public static ArrayList<String> imageUrl = new ArrayList<>();
 
     public static ArrayList<Integer> pos = new ArrayList<>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_building);
+        setContentView(R.layout.activity_quotes);
         Thread.setDefaultUncaughtExceptionHandler(new material.MyUncaughtExceptionHandler());
 
 
@@ -67,16 +69,17 @@ public class building extends AppCompatActivity {
         gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL); // set Horizontal Orientation
         recyclerView.setLayoutManager(gridLayoutManager);
         //firebase
-        myref = FirebaseDatabase.getInstance().getReference().child("/building");
-        FirebaseRecyclerAdapter<instagramAdapter, building.BlogViewHolder> recyclerAdapter = new FirebaseRecyclerAdapter<instagramAdapter, building.BlogViewHolder>(
+        myref = FirebaseDatabase.getInstance().getReference().child("/quotes");
+        FirebaseRecyclerAdapter<instagramAdapter, quotes.BlogViewHolder> recyclerAdapter = new FirebaseRecyclerAdapter<instagramAdapter, quotes.BlogViewHolder>(
                 instagramAdapter.class,
                 R.layout.individual_row,
-                building.BlogViewHolder.class,
+                quotes.BlogViewHolder.class,
                 myref
         )
         {
             @Override
-            protected void populateViewHolder(building.BlogViewHolder viewHolder, instagramAdapter model, int position) {
+            protected void populateViewHolder(quotes.BlogViewHolder viewHolder, instagramAdapter model, int position) {
+
                 //Lv-Edited
                 viewHolder.imageView.setImageDrawable(getResources().getDrawable(R.drawable.loadingpic));
 
@@ -110,8 +113,11 @@ public class building extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
+
                     Intent passdata = new Intent(view.getContext(), customview.class);
-                    passdata.putExtra("image",imageUrl.get(position));
+
+                    passdata.putExtra("image", imageUrl.get(position));
+
                     view.getContext().startActivity(passdata);
 
 
@@ -119,6 +125,8 @@ public class building extends AppCompatActivity {
 
                 }
             });
+
+
 
             mView = itemView;
 
@@ -133,7 +141,7 @@ public class building extends AppCompatActivity {
         }
 
         public void setImage(String image) {
-           new getThumbnail().execute(image);
+            new getThumbnail().execute(image);
         }
 
         //Lv-edit
@@ -182,8 +190,5 @@ public class building extends AppCompatActivity {
         }
 
     }
+    }
 
-
-
-
-}

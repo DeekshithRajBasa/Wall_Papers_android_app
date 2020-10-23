@@ -27,13 +27,13 @@
             </intent-filter>
         </activity>
         <activity android:screenOrientation="userPortrait"
-            android:name=".customview"
+            android:name=".utils.customview"
             android:theme="@style/noaction" />
-        <activity  android:screenOrientation="userPortrait" android:name=".building" />
-        <activity  android:screenOrientation="userPortrait" android:name=".Nature" />
-        <activity   android:screenOrientation="userPortrait" android:name=".flower" />
-        <activity  android:screenOrientation="userPortrait" android:name=".quotes" />
-        <activity  android:screenOrientation="userPortrait" android:name=".material" />
+        <activity  android:screenOrientation="userPortrait" android:name=".category.building" />
+        <activity  android:screenOrientation="userPortrait" android:name=".category.Nature" />
+        <activity   android:screenOrientation="userPortrait" android:name=".category.flower" />
+        <activity  android:screenOrientation="userPortrait" android:name=".category.quotes" />
+        <activity  android:screenOrientation="userPortrait" android:name=".category.material" />
         <activity android:theme="@style/AppTheme.NoActionBar"  android:screenOrientation="userPortrait" android:name=".MainActivity"></activity>
     </application>
 

@@ -1,4 +1,4 @@
-package wallpaper.deekshithrajbasa.com.wall_papers;
+package wallpaper.deekshithrajbasa.com.wall_papers.adapter;
 
 
 public class instagramAdapter {

@@ -1,29 +1,20 @@
 package wallpaper.deekshithrajbasa.com.wall_papers;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.ThumbnailUtils;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -33,7 +24,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -51,34 +41,24 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.gun0912.tedpermission.TedPermission;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.MultiplePermissionsReport;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.DexterError;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.PermissionRequestErrorListener;
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
-import com.karumi.dexter.listener.single.PermissionListener;
-import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
+import wallpaper.deekshithrajbasa.com.wall_papers.adapter.instagramAdapter;
+import wallpaper.deekshithrajbasa.com.wall_papers.category.Nature;
+import wallpaper.deekshithrajbasa.com.wall_papers.category.building;
+import wallpaper.deekshithrajbasa.com.wall_papers.category.flower;
+import wallpaper.deekshithrajbasa.com.wall_papers.category.material;
+import wallpaper.deekshithrajbasa.com.wall_papers.category.quotes;
+import wallpaper.deekshithrajbasa.com.wall_papers.utils.SimpleDividerItemDecoration;
+import wallpaper.deekshithrajbasa.com.wall_papers.utils.customview;
 
-import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
-import static android.Manifest.permission_group.CAMERA;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -296,10 +276,10 @@ public class MainActivity extends AppCompatActivity
 //         }
 
         switch(id){
-        case R.id.nav_gallery : startActivity(new Intent(getApplicationContext(),building.class));break;
-        case R.id.nav_slideshow : startActivity(new Intent(getApplicationContext(),Nature.class)); break;
-        case R.id.nav_manage : startActivity(new Intent(getApplicationContext(),flower.class));break;
-        case R.id.nav_share :  startActivity(new Intent(getApplicationContext(),quotes.class));break;
+        case R.id.nav_gallery : startActivity(new Intent(getApplicationContext(), building.class));break;
+        case R.id.nav_slideshow : startActivity(new Intent(getApplicationContext(), Nature.class)); break;
+        case R.id.nav_manage : startActivity(new Intent(getApplicationContext(), flower.class));break;
+        case R.id.nav_share :  startActivity(new Intent(getApplicationContext(), quotes.class));break;
         case R.id.nav_send : startActivity(new Intent(getApplicationContext(),material.class)); break;
         
         }

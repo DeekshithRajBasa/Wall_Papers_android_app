@@ -1,4 +1,4 @@
-package wallpaper.deekshithrajbasa.com.wall_papers;
+package wallpaper.deekshithrajbasa.com.wall_papers.category;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -21,17 +21,19 @@ import android.widget.TextView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
+import wallpaper.deekshithrajbasa.com.wall_papers.R;
+import wallpaper.deekshithrajbasa.com.wall_papers.utils.SimpleDividerItemDecoration;
+import wallpaper.deekshithrajbasa.com.wall_papers.utils.customview;
+import wallpaper.deekshithrajbasa.com.wall_papers.adapter.instagramAdapter;
 
-public class material extends AppCompatActivity {
+public class building extends AppCompatActivity {
     public static final String EXTRA_URL = "imageurl";
     DatabaseReference dref;
     ListView listview;
@@ -47,14 +49,15 @@ public class material extends AppCompatActivity {
     private EditText mSearchField;
     private ImageButton mSearchBtn;
     //arrays to store image, title, description, int position(0,1,2,3..)
-    public static ArrayList<String> imageUrl = new ArrayList<>();
+  public static ArrayList<String> imageUrl = new ArrayList<>();
 
     public static ArrayList<Integer> pos = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_material);
+        setContentView(R.layout.activity_building);
         Thread.setDefaultUncaughtExceptionHandler(new material.MyUncaughtExceptionHandler());
 
 
@@ -67,20 +70,19 @@ public class material extends AppCompatActivity {
         gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL); // set Horizontal Orientation
         recyclerView.setLayoutManager(gridLayoutManager);
         //firebase
-        myref = FirebaseDatabase.getInstance().getReference().child("/material");
-        FirebaseRecyclerAdapter<instagramAdapter,material.BlogViewHolder> recyclerAdapter = new FirebaseRecyclerAdapter<instagramAdapter, material.BlogViewHolder>(
+        myref = FirebaseDatabase.getInstance().getReference().child("/building");
+        FirebaseRecyclerAdapter<instagramAdapter, building.BlogViewHolder> recyclerAdapter = new FirebaseRecyclerAdapter<instagramAdapter, building.BlogViewHolder>(
                 instagramAdapter.class,
                 R.layout.individual_row,
-                material.BlogViewHolder.class,
+                building.BlogViewHolder.class,
                 myref
-
         )
         {
             @Override
-            protected void populateViewHolder(material.BlogViewHolder viewHolder, instagramAdapter model, int position) {
-
+            protected void populateViewHolder(building.BlogViewHolder viewHolder, instagramAdapter model, int position) {
                 //Lv-Edited
                 viewHolder.imageView.setImageDrawable(getResources().getDrawable(R.drawable.loadingpic));
+
                 viewHolder.setImage(model.getImage());
                 viewHolder.setPosition(position);
                 imageUrl.add("" + model.getImage());
@@ -89,28 +91,9 @@ public class material extends AppCompatActivity {
                 if(!pos.contains(position))
                     pos.add(position);
 
-
             }
         };
         recyclerView.setAdapter(recyclerAdapter);
-
-
-
-    }
-    public static class MyUncaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
-        @Override
-        public void uncaughtException(Thread thread, Throwable ex) {
-            if(ex.getClass().equals(OutOfMemoryError.class))
-            {
-                try {
-                    android.os.Debug.dumpHprofData("/sdcard/dump.hprof");
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            ex.printStackTrace();
-        }
     }
 
     public static class BlogViewHolder extends RecyclerView.ViewHolder {
@@ -127,35 +110,23 @@ public class material extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
-
                     Intent passdata = new Intent(view.getContext(), customview.class);
-
-                    passdata.putExtra("image", imageUrl.get(position));
-
+                    passdata.putExtra("image",imageUrl.get(position));
                     view.getContext().startActivity(passdata);
-
-
-
 
                 }
             });
 
-
-
             mView = itemView;
-
             imageView = (ImageView) itemView.findViewById(R.id.image);
 
         }
-
-
-
         public void setPosition(int pos) {
             this.position = pos;
         }
 
         public void setImage(String image) {
-            new getThumbnail().execute(image);
+           new getThumbnail().execute(image);
         }
 
         //Lv-edit
@@ -204,5 +175,5 @@ public class material extends AppCompatActivity {
         }
 
     }
-    }
 
+}

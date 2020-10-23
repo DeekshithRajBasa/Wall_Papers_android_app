@@ -1,4 +1,4 @@
-package wallpaper.deekshithrajbasa.com.wall_papers;
+package wallpaper.deekshithrajbasa.com.wall_papers.category;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -21,7 +21,6 @@ import android.widget.TextView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -29,8 +28,12 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
+import wallpaper.deekshithrajbasa.com.wall_papers.R;
+import wallpaper.deekshithrajbasa.com.wall_papers.utils.SimpleDividerItemDecoration;
+import wallpaper.deekshithrajbasa.com.wall_papers.utils.customview;
+import wallpaper.deekshithrajbasa.com.wall_papers.adapter.instagramAdapter;
 
-public class quotes extends AppCompatActivity {
+public class flower extends AppCompatActivity {
     public static final String EXTRA_URL = "imageurl";
     DatabaseReference dref;
     ListView listview;
@@ -47,35 +50,33 @@ public class quotes extends AppCompatActivity {
     private ImageButton mSearchBtn;
     //arrays to store image, title, description, int position(0,1,2,3..)
     public static ArrayList<String> imageUrl = new ArrayList<>();
-
     public static ArrayList<Integer> pos = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quotes);
+        setContentView(R.layout.activity_flower);
         Thread.setDefaultUncaughtExceptionHandler(new material.MyUncaughtExceptionHandler());
-
 
         recyclerView = (RecyclerView) findViewById(R.id.Recycleview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new SimpleDividerItemDecoration(this));
         recyclerView.setItemAnimator(new SlideInUpAnimator());
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(),2);
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
         gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL); // set Horizontal Orientation
         recyclerView.setLayoutManager(gridLayoutManager);
         //firebase
-        myref = FirebaseDatabase.getInstance().getReference().child("/quotes");
-        FirebaseRecyclerAdapter<instagramAdapter, quotes.BlogViewHolder> recyclerAdapter = new FirebaseRecyclerAdapter<instagramAdapter, quotes.BlogViewHolder>(
+        myref = FirebaseDatabase.getInstance().getReference().child("/flower");
+        FirebaseRecyclerAdapter<instagramAdapter, flower.BlogViewHolder> recyclerAdapter = new FirebaseRecyclerAdapter<instagramAdapter, flower.BlogViewHolder>(
                 instagramAdapter.class,
                 R.layout.individual_row,
-                quotes.BlogViewHolder.class,
+                flower.BlogViewHolder.class,
                 myref
-        )
-        {
+        ) {
             @Override
-            protected void populateViewHolder(quotes.BlogViewHolder viewHolder, instagramAdapter model, int position) {
+            protected void populateViewHolder(flower.BlogViewHolder viewHolder, instagramAdapter model, int position) {
 
                 //Lv-Edited
                 viewHolder.imageView.setImageDrawable(getResources().getDrawable(R.drawable.loadingpic));
@@ -85,14 +86,12 @@ public class quotes extends AppCompatActivity {
                 imageUrl.add("" + model.getImage());
                 // StringTokenizer tokens = new StringTokenizer(model.getDescription(), "#");
 
-                if(!pos.contains(position))
+                if (!pos.contains(position))
                     pos.add(position);
 
             }
         };
         recyclerView.setAdapter(recyclerAdapter);
-
-
 
     }
 
@@ -116,22 +115,13 @@ public class quotes extends AppCompatActivity {
                     passdata.putExtra("image", imageUrl.get(position));
 
                     view.getContext().startActivity(passdata);
-
-
-
-
                 }
             });
-
-
-
             mView = itemView;
 
             imageView = (ImageView) itemView.findViewById(R.id.image);
 
         }
-
-
 
         public void setPosition(int pos) {
             this.position = pos;
@@ -142,8 +132,7 @@ public class quotes extends AppCompatActivity {
         }
 
         //Lv-edit
-        public class getThumbnail extends AsyncTask<String,Void,Void> {
-
+        public class getThumbnail extends AsyncTask<String, Void, Void> {
             Bitmap bitmap;
 
             @Override
@@ -161,15 +150,15 @@ public class quotes extends AppCompatActivity {
                     connection.connect();
                     InputStream inputStream = connection.getInputStream();
 
-                    Bitmap fetchedBitmap= BitmapFactory.decodeStream(inputStream);
+                    Bitmap fetchedBitmap = BitmapFactory.decodeStream(inputStream);
 
                     Float width = (float) fetchedBitmap.getWidth();
                     Float height = (float) fetchedBitmap.getHeight();
-                    Float ratio = width/height;
+                    Float ratio = width / height;
 
-                    bitmap= ThumbnailUtils.extractThumbnail(fetchedBitmap,(int)(250*ratio),250);
+                    bitmap = ThumbnailUtils.extractThumbnail(fetchedBitmap, (int) (250 * ratio), 250);
 
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
@@ -179,13 +168,11 @@ public class quotes extends AppCompatActivity {
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-
                 imageView.setImageBitmap(bitmap);
 
             }
 
         }
-
     }
-    }
+}
 

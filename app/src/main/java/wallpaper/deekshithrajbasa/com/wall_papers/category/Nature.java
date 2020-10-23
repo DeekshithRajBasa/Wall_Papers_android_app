@@ -1,4 +1,4 @@
-package wallpaper.deekshithrajbasa.com.wall_papers;
+package wallpaper.deekshithrajbasa.com.wall_papers.category;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -21,7 +21,6 @@ import android.widget.TextView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -29,6 +28,10 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
+import wallpaper.deekshithrajbasa.com.wall_papers.R;
+import wallpaper.deekshithrajbasa.com.wall_papers.utils.SimpleDividerItemDecoration;
+import wallpaper.deekshithrajbasa.com.wall_papers.utils.customview;
+import wallpaper.deekshithrajbasa.com.wall_papers.adapter.instagramAdapter;
 
 public class Nature extends AppCompatActivity {
     public static final String EXTRA_URL = "imageurl";
