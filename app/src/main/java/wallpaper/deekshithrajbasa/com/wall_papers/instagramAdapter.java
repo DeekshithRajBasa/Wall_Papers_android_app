@@ -2,18 +2,18 @@ package wallpaper.deekshithrajbasa.com.wall_papers;
 
 
 public class instagramAdapter {
-    private String image;
+    private String imageUrl;
     public instagramAdapter() {
     }
-    public instagramAdapter( String image) {
+    public instagramAdapter( String imageUrl) {
 
-        this.image = image;
+        this.imageUrl = imageUrl;
     }
 
     public String getImage() {
-        return image;
+        return imageUrl;
     }
-    public void setImage(String image) {
-        this.image = image;
+    public void setImage(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
