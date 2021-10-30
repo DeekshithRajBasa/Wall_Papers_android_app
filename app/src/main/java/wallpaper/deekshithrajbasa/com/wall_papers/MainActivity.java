@@ -280,21 +280,6 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-//         if (id == R.id.nav_camera) {
-//             //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container ,new BuildingFragment()).commit();
-//             // Handle the camera action
-//         } else if (id == R.id.nav_gallery) {
-//         startActivity(new Intent(getApplicationContext(),building.class));
-//         } else if (id == R.id.nav_slideshow) {
-//             startActivity(new Intent(getApplicationContext(),Nature.class));
-//         } else if (id == R.id.nav_manage) {
-//             startActivity(new Intent(getApplicationContext(),flower.class));
-//         } else if (id == R.id.nav_share) {
-//             startActivity(new Intent(getApplicationContext(),quotes.class));
-//         } else if (id == R.id.nav_send) {
-//             startActivity(new Intent(getApplicationContext(),material.class));
-//         }
-
         switch(id){
         case R.id.nav_gallery : startActivity(new Intent(getApplicationContext(),building.class));break;
         case R.id.nav_slideshow : startActivity(new Intent(getApplicationContext(),Nature.class)); break;
@@ -308,28 +293,6 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-   /* private void check(){
-
-        if (checkPermission()) {
-
-            Snackbar.make(view, "Permission already granted.", Snackbar.LENGTH_LONG).show();
-
-        } else {
-
-            Snackbar.make(view, "Please request permission.", Snackbar.LENGTH_LONG).show();
-        }
-
-
-        if (!checkPermission()) {
-
-            requestPermission();
-
-        } else {
-
-            Snackbar.make(view, "Permission already granted.", Snackbar.LENGTH_LONG).show();
-
-        }
-    }*/
 
     private boolean checkPermission() {
         int result = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
