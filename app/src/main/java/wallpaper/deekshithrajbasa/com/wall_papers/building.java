@@ -56,8 +56,7 @@ public class building extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_building);
         Thread.setDefaultUncaughtExceptionHandler(new material.MyUncaughtExceptionHandler());
-
-
+        // recycle view 
         recyclerView = (RecyclerView) findViewById(R.id.Recycleview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -79,44 +78,30 @@ public class building extends AppCompatActivity {
             protected void populateViewHolder(building.BlogViewHolder viewHolder, instagramAdapter model, int position) {
                 //Lv-Edited
                 viewHolder.imageView.setImageDrawable(getResources().getDrawable(R.drawable.loadingpic));
-
                 viewHolder.setImage(model.getImage());
                 viewHolder.setPosition(position);
                 imageUrl.add("" + model.getImage());
                 // StringTokenizer tokens = new StringTokenizer(model.getDescription(), "#");
-
                 if(!pos.contains(position))
                     pos.add(position);
 
             }
         };
         recyclerView.setAdapter(recyclerAdapter);
-
-
-
     }
 
     public static class BlogViewHolder extends RecyclerView.ViewHolder {
         View mView;
-
         ImageView imageView;
         int position;
-
         public BlogViewHolder(final View itemView) {
             super(itemView);
-
             itemView.setOnClickListener(new View.OnClickListener() {
-
                 @Override
                 public void onClick(View view) {
-
-                    Intent passdata = new Intent(view.getContext(), customview.class);
-                    passdata.putExtra("image",imageUrl.get(position));
-                    view.getContext().startActivity(passdata);
-
-
-
-
+                    Intent intentData = new Intent(view.getContext(), customview.class);
+                    intentData.putExtra("image",imageUrl.get(position));
+                    view.getContext().startActivity(intentData);
                 }
             });
 
@@ -164,8 +149,8 @@ public class building extends AppCompatActivity {
 
                     bitmap= ThumbnailUtils.extractThumbnail(fetchedBitmap,(int)(250*ratio),250);
 
-                }catch (Exception e){
-                    e.printStackTrace();
+                } catch (Exception exception){
+                    exception.printStackTrace();
                 }
 
                 return null;
