@@ -40,8 +40,7 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
         //used to hide nav bar
-        hidnav();
-
+         hideNavigationBar(true);
         int SPLASH_TIME_OUT = 1000;
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -52,9 +51,10 @@ public class SplashScreen extends AppCompatActivity {
             }
         }, SPLASH_TIME_OUT);
     }
-    public void hidnav() {
+
+    public void hideNavigationBar(boolean value) {
         this.currentApiVersion = Build.VERSION.SDK_INT;
-        if (this.currentApiVersion >= 19) {
+        if (this.currentApiVersion >= 19 && value) {
             getWindow().getDecorView().setSystemUiVisibility(5894);
             final View decorView = getWindow().getDecorView();
             decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
@@ -66,6 +66,7 @@ public class SplashScreen extends AppCompatActivity {
             });
         }
     }
+    
     @SuppressLint({"NewApi"})
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
